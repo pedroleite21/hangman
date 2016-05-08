@@ -8,7 +8,7 @@
 
 int main()
 {
-    wordSelect(peaceful);
+    printf("%s", wordSelect(peaceful));
     
     return 0;
 }

@@ -7,7 +7,7 @@
 #define medium 2
 #define hard 3
 
-void *wordSelect(int difficult)
+char *wordSelect(int difficult)
 {
     FILE *wordsDB = NULL;
         
@@ -38,6 +38,7 @@ void *wordSelect(int difficult)
         if (ch == '\n')
             wordsAmount++;
     }
+    fseek(wordsDB, 0, SEEK_SET);
     wordLength /= wordsAmount;
     printf("Words amount: %d\n", wordsAmount);
     printf("Word length: %d\n", wordLength);
@@ -45,4 +46,18 @@ void *wordSelect(int difficult)
     srand(time(NULL));
     int newWordNum = rand() % wordsAmount;
     printf("New word num: %d\n", newWordNum);
+    char newWord[wordLength];
+    
+    int i;
+    while (i != newWordNum)
+    {
+        ch = fgetc(wordsDB);
+        if (ch == '\n')
+            i++;
+    }
+    
+    for (i = 0; i < wordLength; i++)
+        newWord[i] = fgetc(wordsDB);
+        
+    return newWord;
 }
