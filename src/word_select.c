@@ -10,7 +10,7 @@
 char *wordSelect(int difficult)
 {
     FILE *wordsDB = NULL;
-        
+
     switch (difficult)
     {
         case peaceful:
@@ -20,16 +20,21 @@ char *wordSelect(int difficult)
             wordsDB = fopen("../res/words/easy.txt", "r");
             break;
         case medium:
-            wordsDB = fopen("../res/words/peaceful.txt", "r");
+            wordsDB = fopen("../res/words/medium.txt", "r");
             break;
         case hard:
-            wordsDB = fopen("../res/words/peaceful.txt", "r");
+            wordsDB = fopen("../res/words/hard.txt", "r");
             break;
     }
-    
+    if (wordsDB == NULL)
+    {
+        printf("File not found.\n");
+        return 0;
+    }
+
     int wordsAmount = 0, wordLength = 0;
     char ch;
-    
+
     while (ch != EOF)
     {
         ch = fgetc(wordsDB);
@@ -40,24 +45,23 @@ char *wordSelect(int difficult)
     }
     fseek(wordsDB, 0, SEEK_SET);
     wordLength /= wordsAmount;
-    printf("Words amount: %d\n", wordsAmount);
-    printf("Word length: %d\n", wordLength);
-    
+
     srand(time(NULL));
     int newWordNum = rand() % wordsAmount;
-    printf("New word num: %d\n", newWordNum);
-    char newWord[wordLength];
-    
-    int i;
+
+    char *newWord;
+    newWord = (char*)malloc(wordLength*sizeof(char));
+
+    int i = 0;
     while (i != newWordNum)
     {
         ch = fgetc(wordsDB);
         if (ch == '\n')
             i++;
     }
-    
+
     for (i = 0; i < wordLength; i++)
         newWord[i] = fgetc(wordsDB);
-        
+
     return newWord;
 }

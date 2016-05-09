@@ -8,7 +8,7 @@ bin/hangman: prepare objects
 objects: prepare
 	gcc -Wall -O0 -g3 -c src/*.c
 	mv *.o obj
-	
+
 app: bin/hangman
 	bin/hangman
 
