@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "word_select.h"
+#include "hangman.h"
 
 #define peaceful 0
 #define easy 1
@@ -8,7 +9,10 @@
 
 int main()
 {
-    printf("%s", wordSelect(peaceful));
+    char *wordOfTheGame;
+    wordOfTheGame = wordSelect(peaceful);
+    printf("Word of the game: %s.\n", wordOfTheGame);
+    Hangman(wordOfTheGame);
     
     return 0;
 }
