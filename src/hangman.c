@@ -36,6 +36,10 @@ int Hangman(char *word)
     {
         int symExists = 0;
 
+        printf("Used symbols:\n");
+        for (int k = 0; k < alphabetSize; k++)
+            printf("%c", usedSymbols[k]);
+        printf("\n\n");
         printf("Errors: %d\n\n", errAmount);
         for (i = 0; i < wordSize; i++)
             printf("%c", hiddenWord[i]);

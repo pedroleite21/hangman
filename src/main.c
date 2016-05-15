@@ -27,6 +27,7 @@ int main()
         printf("Another try? [y/n] ");
         prompt = getche();
     }
+    printf("\n");
     
     return 0;
 }
