@@ -7,7 +7,7 @@
 #define medium 2
 #define hard 3
 
-char *wordSelect(int difficult)
+char *WordSelect(int difficult)
 {
     FILE *wordsDB = NULL;
 
