@@ -1,11 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "conio.h"
+
+#define alphabetSize 26
+
+int symUsed(char sym, char *str)
+{
+    for (int i = 0; i < strlen(str); i++)
+        if (str[i] == sym)
+            return 1;
+    return 0;
+}
 
 int Hangman(char *word)
 {
-    int i, wordSize, gameStatus = 0, errAmount = 0;
-    char symbol;
+    int i, count = 0, wordSize, errAmount = 0;
+    char symbol, usedSymbols[alphabetSize];
+    for (int k = 0; k < alphabetSize; k++)
+        usedSymbols[k] = '-';
 
     for (wordSize = 0; word[wordSize] != '\0'; wordSize++);
     printf("Word size is: %d.\n", wordSize);
@@ -16,25 +29,34 @@ int Hangman(char *word)
             hiddenWord[i] = '-';
     
     printf("Press any key to start...\n");
-    system("read contscr");
+    getch();
     system("clear");
 
-    while (gameStatus == 0 && errAmount != 3)
+    while (errAmount != 3)
     {
         int symExists = 0;
+
         printf("Errors: %d\n\n", errAmount);
         for (i = 0; i < wordSize; i++)
             printf("%c", hiddenWord[i]);
-
         printf("\n\nEnter symbol: ");
-        scanf(" %c", &symbol);
+        symbol = getche();
+        if (symbol < 'a' || symbol > 'z')
+        {
+            printf("\nYou should enter [a..z] symbols only.");
+            getch();
+            system("clear");
+            continue;
+        }
 
         for (i = 0; i < wordSize; i++)
+        {
             if (word[i] == symbol)
             {
                 symExists = 1;
                 break;
             }
+        }
 
         if (symExists)
         {
@@ -42,16 +64,32 @@ int Hangman(char *word)
                 if (word[i] == symbol)
                     hiddenWord[i] = symbol;
             if (!strcmp(word, hiddenWord))
-                gameStatus = 1;
+            {
+                system("clear");
+                break;
+            }
         }
-        else
+        else if (!symExists && !symUsed(symbol, usedSymbols))
             errAmount++;
+
+        if (!symUsed(symbol, usedSymbols))
+        {
+            usedSymbols[count] = symbol;
+            count++;
+        }
 
         system("clear");
     }
-    if (gameStatus == 1)
+
+    if (errAmount != 3)
+    {
         printf("You win!\n");
+        return 1;
+    }
     else
+    {
         printf("You lose!\n");
-    return 0;
+        return 0;
+    }
+    return -1;
 }
