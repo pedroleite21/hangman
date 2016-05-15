@@ -28,9 +28,9 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=1
-FILE_NAME_0=619;C;0;EUTF-8;0;1;0;%2Fhome%2Fdx37%2FTRPO%2Fhangman%2Fsrc%2Fmain.c;0;4
-FILE_NAME_1=1943;C;0;EUTF-8;0;1;0;%2Fhome%2Fdx37%2FTRPO%2Fhangman%2Fsrc%2Fhangman.c;0;4
+current_page=3
+FILE_NAME_0=709;C;0;EUTF-8;0;1;0;%2Fhome%2Fdx37%2FTRPO%2Fhangman%2Fsrc%2Fmain.c;0;4
+FILE_NAME_1=982;C;0;EUTF-8;0;1;0;%2Fhome%2Fdx37%2FTRPO%2Fhangman%2Fsrc%2Fhangman.c;0;4
 FILE_NAME_2=70;C;0;EUTF-8;0;1;0;%2Fhome%2Fdx37%2FTRPO%2Fhangman%2Fsrc%2Fhangman.h;0;4
 FILE_NAME_3=811;C;0;EUTF-8;0;1;0;%2Fhome%2Fdx37%2FTRPO%2Fhangman%2Fsrc%2Fword_select.c;0;4
 FILE_NAME_4=52;C;0;EUTF-8;0;1;0;%2Fhome%2Fdx37%2FTRPO%2Fhangman%2Fsrc%2Fword_select.h;0;4
