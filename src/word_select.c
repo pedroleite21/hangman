@@ -2,27 +2,22 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define peaceful 0
-#define easy 1
-#define medium 2
-#define hard 3
-
 char *WordSelect(int difficult)
 {
     FILE *wordsDB = NULL;
 
     switch (difficult)
     {
-        case peaceful:
+        case 0:
             wordsDB = fopen("../res/words/peaceful.txt", "r");
             break;
-        case easy:
+        case 1:
             wordsDB = fopen("../res/words/easy.txt", "r");
             break;
-        case medium:
+        case 2:
             wordsDB = fopen("../res/words/medium.txt", "r");
             break;
-        case hard:
+        case 3:
             wordsDB = fopen("../res/words/hard.txt", "r");
             break;
     }
