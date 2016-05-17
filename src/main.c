@@ -11,10 +11,12 @@
 
 int main()
 {
-    int gamesWin = 0, gamesLose = 0, gameRes = 0;
-    char *wordOfTheGame, prompt = 'y';
+    int gamesWin = 0, gamesLose = 0;
+    char prompt = 'y';
     while (prompt != 'n')
     {
+        int gameRes;
+        char *wordOfTheGame;
         system("clear");
         wordOfTheGame = WordSelect(peaceful);
         printf("Word of the game: %s.\n", wordOfTheGame);

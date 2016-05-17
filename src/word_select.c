@@ -63,5 +63,7 @@ char *WordSelect(int difficult)
     for (i = 0; i < wordLength; i++)
         newWord[i] = fgetc(wordsDB);
 
+    fclose(wordsDB);
+
     return newWord;
 }
