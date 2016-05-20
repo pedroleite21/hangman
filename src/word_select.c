@@ -8,16 +8,16 @@ char *WordSelect(int difficult)
 
     switch (difficult)
     {
-        case 0:
+        case 1:
             wordsDB = fopen("../res/words/peaceful.txt", "r");
             break;
-        case 1:
+        case 2:
             wordsDB = fopen("../res/words/easy.txt", "r");
             break;
-        case 2:
+        case 3:
             wordsDB = fopen("../res/words/medium.txt", "r");
             break;
-        case 3:
+        case 4:
             wordsDB = fopen("../res/words/hard.txt", "r");
             break;
     }

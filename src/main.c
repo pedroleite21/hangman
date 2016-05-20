@@ -12,15 +12,18 @@ int main()
     {
         int gameRes, difficult = -1;
         char *wordOfTheGame;
-        while (difficult < 0 || difficult > 3)
+        while (difficult < 0 || difficult > 4)
         {
-            printf("0 - Peaceful\n");
-            printf("1 - Easy\n");
-            printf("2 - Medium\n");
-            printf("3 - Hard\n");
-            printf("\nSelect difficult: ");
+            printf("1 - Peaceful\n");
+            printf("2 - Easy\n");
+            printf("3 - Medium\n");
+            printf("4 - Hard\n");
+            printf("0 - Exit from the game\n");
+            printf("\nSelect menu number: ");
             difficult = getche() - '0';
-            if (difficult < 0 || difficult > 3)
+            if (difficult == 0)
+                return 0;
+            if (difficult < 0 || difficult > 4)
             {
                 printf("\nYou should enter [0..3] symbols only.");
                 getch();
