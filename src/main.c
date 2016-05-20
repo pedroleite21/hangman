@@ -6,11 +6,11 @@
 
 int main()
 {
-    int gamesWin = 0, gamesLose = 0, difficult = -1;
+    int gamesWin = 0, gamesLose = 0;
     char prompt = 'y';
     while (prompt != 'n')
     {
-        int gameRes;
+        int gameRes, difficult = -1;
         char *wordOfTheGame;
         while (difficult < 0 || difficult > 3)
         {
@@ -38,6 +38,8 @@ int main()
         printf("Win: %d\tLose: %d\n", gamesWin, gamesLose);
         printf("Another try? [y/n] ");
         prompt = getche();
+        if (prompt == 'y')
+            system("clear");
     }
     printf("\n");
     

@@ -26,7 +26,8 @@ int Hangman(char *word)
     char *hiddenWord;
     hiddenWord = (char*)malloc(wordSize*sizeof(char));
     for (i = 0; i < wordSize; i++)
-            hiddenWord[i] = '-';
+        hiddenWord[i] = '-';
+    hiddenWord[i] = '\0';
     
     printf("Press any key to start...\n");
     getch();
