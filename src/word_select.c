@@ -23,8 +23,8 @@ char *WordSelect(int difficult)
     }
     if (wordsDB == NULL)
     {
-        printf("File not found.\n");
-        return 0;
+        printf("Words database not found.\n");
+        return NULL;
     }
 
     int wordsAmount = 0, wordLength = 0;

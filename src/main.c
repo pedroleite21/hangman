@@ -27,7 +27,8 @@ int main()
             }
         }
         system("clear");
-        wordOfTheGame = WordSelect(difficult);
+        if (!(wordOfTheGame = WordSelect(difficult)))
+            return 0;
         printf("Word of the game: %s.\n", wordOfTheGame);
         gameRes = Hangman(wordOfTheGame);
         if (gameRes)
