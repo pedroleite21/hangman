@@ -4,19 +4,31 @@
 #include "hangman.h"
 #include "conio.h"
 
-#define peaceful 0
-#define easy 1
-#define medium 2
-#define hard 3
-
 int main()
 {
-    int gamesWin = 0, gamesLose = 0, gameRes = 0;
-    char *wordOfTheGame, prompt = 'y';
+    int gamesWin = 0, gamesLose = 0;
+    char prompt = 'y';
     while (prompt != 'n')
     {
+        int gameRes, difficult = -1;
+        char *wordOfTheGame;
+        while (difficult < 0 || difficult > 3)
+        {
+            printf("0 - Peaceful\n");
+            printf("1 - Easy\n");
+            printf("2 - Medium\n");
+            printf("3 - Hard\n");
+            printf("\nSelect difficult: ");
+            difficult = getche() - '0';
+            if (difficult < 0 || difficult > 3)
+            {
+                printf("\nYou should enter [0..3] symbols only.");
+                getch();
+            }
+        }
         system("clear");
-        wordOfTheGame = WordSelect(peaceful);
+        if (!(wordOfTheGame = WordSelect(difficult)))
+            return 0;
         printf("Word of the game: %s.\n", wordOfTheGame);
         gameRes = Hangman(wordOfTheGame);
         if (gameRes)
@@ -26,6 +38,8 @@ int main()
         printf("Win: %d\tLose: %d\n", gamesWin, gamesLose);
         printf("Another try? [y/n] ");
         prompt = getche();
+        if (prompt == 'y')
+            system("clear");
     }
     printf("\n");
     
