@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <conio.h>
 #include "word_select.h"
 #include "hangman.h"
-#include "conio.h"
 
-int main()
+int main(int argc, char *argv[])
 {
     int gamesWin = 0, gamesLose = 0;
     char prompt = 'y';
