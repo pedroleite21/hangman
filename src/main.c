@@ -1,26 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <gtk/gtk.h>
 #include "word_select.h"
 #include "hangman.h"
 
 int main(int argc, char *argv[])
 {
+    gtk_init(&argc, &argv);
     int gamesWin = 0, gamesLose = 0;
     char prompt = 'y';
     while (prompt != 'n')
     {
         int gameRes, difficult = -1;
         char *wordOfTheGame;
-        while (difficult < 0 || difficult > 3)
+        while (difficult < 0 || difficult > 4)
         {
-            printf("0 - Peaceful\n");
-            printf("1 - Easy\n");
-            printf("2 - Medium\n");
-            printf("3 - Hard\n");
+            printf("1 - Peaceful\n");
+            printf("2 - Easy\n");
+            printf("3 - Medium\n");
+            printf("4 - Hard\n");
             printf("\nSelect difficult: ");
             difficult = getche() - '0';
-            if (difficult < 0 || difficult > 3)
+            if (difficult < 0 || difficult > 4)
             {
                 printf("\nYou should enter [0..3] symbols only.");
                 getch();
