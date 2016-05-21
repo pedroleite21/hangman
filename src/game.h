@@ -1,10 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 
-#define alphabetSize 26
-
-int i, wordSize, gameRes;
-char *wordOfTheGame, *hiddenWord, usedSymbols[alphabetSize];
+int i, wordSize, errAmount, gamesWin, gamesLose;
+char *wordOfTheGame, *hiddenWord;
 const char *symbol;
 
 #endif

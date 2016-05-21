@@ -616,7 +616,8 @@
               <object class="GtkLabel" id="winAmount">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Cats Savior: </property>
+                <property name="margin_right">25</property>
+                <property name="label" translatable="yes">Cats saved: </property>
               </object>
               <packing>
                 <property name="left_attach">0</property>
@@ -627,7 +628,8 @@
               <object class="GtkLabel" id="loseAmount">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Cats Killer: </property>
+                <property name="margin_left">25</property>
+                <property name="label" translatable="yes">Cats killed: </property>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -653,6 +655,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="replayGame" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">0</property>

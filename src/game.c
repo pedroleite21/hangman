@@ -6,7 +6,7 @@
 #include "interface.h"
 #include "game.h"
 
-int difficult = 0, gamesWin = 0, gamesLose = 0;
+int difficult = 0;
 
 void difficult_ch(GtkToggleButton *button)
 {
@@ -25,17 +25,16 @@ void difficult_ch(GtkToggleButton *button)
     }
 }
 
-int startGame()
+void startGame()
 {
+    errAmount = 0;
     gtk_widget_hide(difficultWindow);
     gtk_widget_hide(msgWindow);
+    gtk_widget_show_all(GTK_WIDGET(alphabetGrid));
 
     if (!(wordOfTheGame = WordSelect(difficult)))
-        return 0;
+        return;
     printf("Word: %s\n", wordOfTheGame);
-
-    for (int k = 0; k < alphabetSize; k++)
-        usedSymbols[k] = '-';
 
     for (wordSize = 0; wordOfTheGame[wordSize] != '\0'; wordSize++);
 
@@ -46,46 +45,10 @@ int startGame()
 
     gtk_label_set_text(hiddenWordLabel, hiddenWord);
     gtk_widget_show(gameWindow);
-
-    return 0;
 }
 
-/* int game()
+void replayGame()
 {
-    char prompt = 'y';
-    while (prompt != 'n')
-    {
-        while (difficult < 0 || difficult > 3)
-        {
-            printf("1 - Peaceful\n");
-            printf("2 - Easy\n");
-            printf("3 - Medium\n");
-            printf("4 - Hard\n");
-            printf("0 - Exit from the game\n");
-            printf("\nSelect menu number: ");
-            difficult = getche() - '0';
-            if (difficult < 0 || difficult > 3)
-            {
-                printf("\nYou should enter [0..3] symbols only.");
-                getch();
-            }
-        }
-        system("clear");
-        if (!(wordOfTheGame = WordSelect(difficult)))
-            return 0;
-        printf("Word of the game: %s.\n", wordOfTheGame);
-        gameRes = Hangman(wordOfTheGame);
-        if (gameRes)
-            gamesWin++;
-        else
-            gamesLose++;
-        printf("Win: %d\tLose: %d\n", gamesWin, gamesLose);
-        printf("Another try? [y/n] ");
-        prompt = getche();
-        if (prompt == 'y')
-            system("clear");
-    }
-    printf("\n");
-    
-    return 0;
-} */
+    gtk_widget_hide(msgWindow);
+    gtk_widget_show(difficultWindow);
+}

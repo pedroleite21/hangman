@@ -5,25 +5,13 @@
 #include "game.h"
 #include "interface.h"
 
-#define alphabetSize 26
-
-int count = 0, errAmount = 0;
-
-int symUsed(const char sym, char *str)
-{
-    for (int i = 0; i < strlen(str); i++)
-        if (str[i] == sym)
-            return 1;
-    return 0;
-}
-
 int getSymbol(GtkButton *button)
 {
     symbol = gtk_button_get_label(button);
     gtk_widget_hide(GTK_WIDGET(button));
-    printf("%s\n", symbol);
 
     int symExists = 0;
+    char msgKilled[20], msgSaved[20];
 
     for (i = 0; i < wordSize; i++)
     {
@@ -42,29 +30,30 @@ int getSymbol(GtkButton *button)
         gtk_label_set_text(hiddenWordLabel, hiddenWord);
         if (!strcmp(wordOfTheGame, hiddenWord))
         {
-            system("echo WINNER");
+            gtk_widget_hide(gameWindow);
+            gamesWin++;
+            sprintf(msgSaved, "Cats saved: %d", gamesWin);
+            sprintf(msgKilled, "Cats killed: %d", gamesLose);
+            gtk_label_set_text(gameMsg, "You saved the cat!");
+            gtk_label_set_text(winAmount, msgSaved);
+            gtk_label_set_text(loseAmount, msgKilled);
+            gtk_widget_show(msgWindow);
         }
     }
-    else if (!symExists && !symUsed(*symbol, usedSymbols))
+    else if (!symExists)
         errAmount++;
 
-    if (!symUsed(*symbol, usedSymbols))
+    if (errAmount == 5)
     {
-        usedSymbols[count] = *symbol;
-        count++;
+        gtk_widget_hide(gameWindow);
+        gamesLose++;
+        sprintf(msgSaved, "Cats saved: %d", gamesWin);
+        sprintf(msgKilled, "Cats killed: %d", gamesLose);
+        gtk_label_set_text(gameMsg, "You killed the cat!");
+        gtk_label_set_text(winAmount, msgSaved);
+        gtk_label_set_text(loseAmount, msgKilled);
+        gtk_widget_show(msgWindow);
     }
 
-    system("echo WTF");
-
-    if (errAmount != 5)
-    {
-        printf("You win!\n");
-        return 1;
-    }
-    else
-    {
-        printf("You lose!\n");
-        return 0;
-    }
     return 0;
 }

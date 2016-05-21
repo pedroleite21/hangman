@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <gtk/gtk.h>
 #include "interface.h"
 
@@ -31,6 +30,8 @@ int main(int argc, char *argv[])
     gameMsg = GTK_LABEL(gtk_builder_get_object(builder, "gameMsg"));
     winAmount = GTK_LABEL(gtk_builder_get_object(builder, "winAmount"));
     loseAmount = GTK_LABEL(gtk_builder_get_object(builder, "loseAmount"));
+
+    alphabetGrid = GTK_GRID(gtk_builder_get_object(builder, "alphabetGrid"));
 
     gtk_builder_connect_signals (builder, NULL);
     g_object_unref( G_OBJECT( builder ) );
