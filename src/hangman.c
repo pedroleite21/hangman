@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <conio.h>
 #include <string.h>
-#include "conio.h"
 
 #define alphabetSize 26
 
@@ -33,7 +33,7 @@ int Hangman(char *word)
     getch();
     system("clear");
 
-    while (errAmount != 3)
+    while (errAmount != 5)
     {
         int symExists = 0;
 
@@ -86,7 +86,7 @@ int Hangman(char *word)
         system("clear");
     }
 
-    if (errAmount != 3)
+    if (errAmount != 5)
     {
         printf("You win!\n");
         return 1;
