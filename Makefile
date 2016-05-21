@@ -2,17 +2,17 @@
 
 #############
 
-bin/hangman: prepare obj/main.o obj/hangman.o obj/interface.o obj/word_select.o obj/conio.o
-	gcc -std=c99 -Wall -O0 -g3 -o bin/hangman obj/*.o `pkg-config --cflags --libs gtk+-3.0`
+bin/hangman: prepare obj/main.o obj/hangman.o obj/game.o obj/word_select.o obj/conio.o
+	gcc -std=c99 -Wall -O0 -g3 -o bin/hangman obj/*.o `pkg-config --cflags --libs gtk+-3.0` -rdynamic
 
 obj/main.o: src/main.c
-	gcc -std=c99 -Wall -O0 -g3 -c src/main.c -o obj/main.o -Ithirdparty `pkg-config --cflags --libs gtk+-3.0`
+	gcc -std=c99 -Wall -O0 -g3 -c src/main.c -o obj/main.o -Ithirdparty `pkg-config --cflags --libs gtk+-3.0` -rdynamic
 
 obj/hangman.o: src/hangman.c
-	gcc -std=c99 -Wall -O0 -g3 -c src/hangman.c -o obj/hangman.o -Ithirdparty `pkg-config --cflags --libs gtk+-3.0`
+	gcc -std=c99 -Wall -O0 -g3 -c src/hangman.c -o obj/hangman.o -Ithirdparty `pkg-config --cflags --libs gtk+-3.0` -rdynamic
 
-obj/interface.o: src/interface.c
-	gcc -std=c99 -Wall -O0 -g3 -c src/interface.c -o obj/interface.o -Ithirdparty `pkg-config --cflags --libs gtk+-3.0`
+obj/game.o: src/game.c
+	gcc -std=c99 -Wall -O0 -g3 -c src/game.c -o obj/game.o -Ithirdparty `pkg-config --cflags --libs gtk+-3.0` -rdynamic
 
 obj/word_select.o: src/word_select.c
 	gcc -std=c99 -Wall -O0 -g3 -c src/word_select.c -o obj/word_select.o
