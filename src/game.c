@@ -1,11 +1,12 @@
-#include <stdio.h>
+#include <gtk/gtk.h>
 #include <stdlib.h>
-#include <conio.h>
 #include <string.h>
 #include "word_select.h"
 #include "hangman.h"
+#include "interface.h"
 #include "game.h"
-#include <gtk/gtk.h>
+
+int difficult = 0, gamesWin = 0, gamesLose = 0;
 
 void difficult_ch(GtkToggleButton *button)
 {
@@ -13,7 +14,6 @@ void difficult_ch(GtkToggleButton *button)
     {
         const char *diffname;
         diffname = gtk_button_get_label(GTK_BUTTON(button));
-        printf("Difficult: %d\n", difficult);
         if (!strcmp(diffname, "Peaceful"))
             difficult = 0;
         else if (!strcmp(diffname, "Easy"))
@@ -30,25 +30,31 @@ int startGame()
     gtk_widget_hide(difficultWindow);
     gtk_widget_hide(msgWindow);
 
-    int gamesWin = 0, gamesLose = 0;
-    int gameRes;
-    char *wordOfTheGame;
     if (!(wordOfTheGame = WordSelect(difficult)))
         return 0;
-    gtk_label_set_text(hiddenWordLabel, wordOfTheGame);
+    printf("Word: %s\n", wordOfTheGame);
 
+    for (int k = 0; k < alphabetSize; k++)
+        usedSymbols[k] = '-';
+
+    for (wordSize = 0; wordOfTheGame[wordSize] != '\0'; wordSize++);
+
+    hiddenWord = (char*)malloc(wordSize*sizeof(char));
+    for (i = 0; i < wordSize; i++)
+        hiddenWord[i] = '-';
+    hiddenWord[i] = '\0';
+
+    gtk_label_set_text(hiddenWordLabel, hiddenWord);
     gtk_widget_show(gameWindow);
+
     return 0;
 }
 
-int game()
+/* int game()
 {
-    int gamesWin = 0, gamesLose = 0;
     char prompt = 'y';
     while (prompt != 'n')
     {
-        int gameRes, difficult = -1;
-        char *wordOfTheGame;
         while (difficult < 0 || difficult > 3)
         {
             printf("1 - Peaceful\n");
@@ -82,4 +88,4 @@ int game()
     printf("\n");
     
     return 0;
-}
+} */

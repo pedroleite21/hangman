@@ -1,9 +1,11 @@
-.PHONY: clean prepare objects
+OBJECTS = obj/main.o obj/hangman.o obj/game.o obj/word_select.o obj/conio.o
+
+.PHONY: clean prepare
 
 #############
 
-bin/hangman: prepare obj/main.o obj/hangman.o obj/game.o obj/word_select.o obj/conio.o
-	gcc -std=c99 -Wall -O0 -g3 -o bin/hangman obj/*.o `pkg-config --cflags --libs gtk+-3.0` -rdynamic
+bin/hangman: prepare ${OBJECTS}
+	gcc -std=c99 -Wall -O0 -g3 -o bin/hangman ${OBJECTS} `pkg-config --cflags --libs gtk+-3.0` -rdynamic
 
 obj/main.o: src/main.c
 	gcc -std=c99 -Wall -O0 -g3 -c src/main.c -o obj/main.o -Ithirdparty `pkg-config --cflags --libs gtk+-3.0` -rdynamic

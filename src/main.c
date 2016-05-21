@@ -1,12 +1,10 @@
 #include <stdio.h>
 #include <gtk/gtk.h>
-#include "game.h"
+#include "interface.h"
 
 int main(int argc, char *argv[])
 {
     GError *error = NULL;
-
-    difficult = 0;
 
     gtk_init( &argc, &argv );
     builder = gtk_builder_new();

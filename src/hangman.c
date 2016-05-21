@@ -2,10 +2,14 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <string.h>
+#include "game.h"
+#include "interface.h"
 
 #define alphabetSize 26
 
-int symUsed(char sym, char *str)
+int count = 0, errAmount = 0;
+
+int symUsed(const char sym, char *str)
 {
     for (int i = 0; i < strlen(str); i++)
         if (str[i] == sym)
@@ -13,78 +17,44 @@ int symUsed(char sym, char *str)
     return 0;
 }
 
-int Hangman(char *word)
+int getSymbol(GtkButton *button)
 {
-    int i, count = 0, wordSize, errAmount = 0;
-    char symbol, usedSymbols[alphabetSize];
-    for (int k = 0; k < alphabetSize; k++)
-        usedSymbols[k] = '-';
+    symbol = gtk_button_get_label(button);
+    gtk_widget_hide(GTK_WIDGET(button));
+    printf("%s\n", symbol);
 
-    for (wordSize = 0; word[wordSize] != '\0'; wordSize++);
-    printf("Word size is: %d.\n", wordSize);
-    
-    char *hiddenWord;
-    hiddenWord = (char*)malloc(wordSize*sizeof(char));
+    int symExists = 0;
+
     for (i = 0; i < wordSize; i++)
-        hiddenWord[i] = '-';
-    hiddenWord[i] = '\0';
-    
-    printf("Press any key to start...\n");
-    getch();
-    system("clear");
-
-    while (errAmount != 5)
     {
-        int symExists = 0;
-
-        printf("Used symbols:\n");
-        for (int k = 0; k < alphabetSize; k++)
-            printf("%c", usedSymbols[k]);
-        printf("\n\n");
-        printf("Errors: %d\n\n", errAmount);
-        for (i = 0; i < wordSize; i++)
-            printf("%c", hiddenWord[i]);
-        printf("\n\nEnter symbol: ");
-        symbol = getche();
-        if (symbol < 'a' || symbol > 'z')
+        if (wordOfTheGame[i] == *symbol)
         {
-            printf("\nYou should enter [a..z] symbols only.");
-            getch();
-            system("clear");
-            continue;
+            symExists = 1;
+            break;
         }
-
-        for (i = 0; i < wordSize; i++)
-        {
-            if (word[i] == symbol)
-            {
-                symExists = 1;
-                break;
-            }
-        }
-
-        if (symExists)
-        {
-            for (i = 0; i < wordSize; i++)
-                if (word[i] == symbol)
-                    hiddenWord[i] = symbol;
-            if (!strcmp(word, hiddenWord))
-            {
-                system("clear");
-                break;
-            }
-        }
-        else if (!symExists && !symUsed(symbol, usedSymbols))
-            errAmount++;
-
-        if (!symUsed(symbol, usedSymbols))
-        {
-            usedSymbols[count] = symbol;
-            count++;
-        }
-
-        system("clear");
     }
+
+    if (symExists)
+    {
+        for (i = 0; i < wordSize; i++)
+            if (wordOfTheGame[i] == *symbol)
+                hiddenWord[i] = *symbol;
+        gtk_label_set_text(hiddenWordLabel, hiddenWord);
+        if (!strcmp(wordOfTheGame, hiddenWord))
+        {
+            system("echo WINNER");
+        }
+    }
+    else if (!symExists && !symUsed(*symbol, usedSymbols))
+        errAmount++;
+
+    if (!symUsed(*symbol, usedSymbols))
+    {
+        usedSymbols[count] = *symbol;
+        count++;
+    }
+
+    system("echo WTF");
 
     if (errAmount != 5)
     {
@@ -96,5 +66,5 @@ int Hangman(char *word)
         printf("You lose!\n");
         return 0;
     }
-    return -1;
+    return 0;
 }
