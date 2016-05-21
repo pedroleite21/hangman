@@ -7,22 +7,21 @@
 
 int main(int argc, char *argv[])
 {
-    gtk_init(&argc, &argv);
     int gamesWin = 0, gamesLose = 0;
     char prompt = 'y';
     while (prompt != 'n')
     {
         int gameRes, difficult = -1;
         char *wordOfTheGame;
-        while (difficult < 0 || difficult > 4)
+        while (difficult < 0 || difficult > 3)
         {
-            printf("1 - Peaceful\n");
-            printf("2 - Easy\n");
-            printf("3 - Medium\n");
-            printf("4 - Hard\n");
+            printf("0 - Peaceful\n");
+            printf("1 - Easy\n");
+            printf("2 - Medium\n");
+            printf("3 - Hard\n");
             printf("\nSelect difficult: ");
             difficult = getche() - '0';
-            if (difficult < 0 || difficult > 4)
+            if (difficult < 0 || difficult > 3)
             {
                 printf("\nYou should enter [0..3] symbols only.");
                 getch();

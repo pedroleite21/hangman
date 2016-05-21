@@ -3,7 +3,7 @@
 #############
 
 bin/hangman: prepare obj/main.o obj/hangman.o obj/interface.o obj/word_select.o obj/conio.o
-	gcc -std=c99 -Wall -O0 -g3 -o bin/hangman obj/main.o obj/hangman.o obj/word_select.o obj/conio.o `pkg-config --cflags --libs gtk+-3.0`
+	gcc -std=c99 -Wall -O0 -g3 -o bin/hangman obj/*.o `pkg-config --cflags --libs gtk+-3.0`
 
 obj/main.o: src/main.c
 	gcc -std=c99 -Wall -O0 -g3 -c src/main.c -o obj/main.o -Ithirdparty `pkg-config --cflags --libs gtk+-3.0`
