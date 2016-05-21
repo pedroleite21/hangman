@@ -40,7 +40,11 @@ int getSymbol(GtkButton *button)
         }
     }
     else if (!symExists)
+    {
         errAmount++;
+        sprintf(errPath, "../res/pics/%d.png", errAmount);
+        gtk_image_set_from_file(hangmanImage, errPath);
+    }
 
     if (errAmount == 5)
     {

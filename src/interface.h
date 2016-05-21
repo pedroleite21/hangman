@@ -11,5 +11,6 @@ GtkRadioButton *difficult0, *difficult1, *difficult2, *difficult3;
 GtkButton *startButton, *exitButton;
 GtkLabel *hiddenWordLabel, *gameMsg, *winAmount, *loseAmount;
 GtkGrid *alphabetGrid;
+GtkImage *hangmanImage;
 
 #endif

@@ -32,6 +32,8 @@ int main(int argc, char *argv[])
     loseAmount = GTK_LABEL(gtk_builder_get_object(builder, "loseAmount"));
 
     alphabetGrid = GTK_GRID(gtk_builder_get_object(builder, "alphabetGrid"));
+    
+    hangmanImage = GTK_IMAGE(gtk_builder_get_object(builder, "hangmanImage"));
 
     gtk_builder_connect_signals (builder, NULL);
     g_object_unref( G_OBJECT( builder ) );
