@@ -12,8 +12,7 @@ void difficult_ch(GtkToggleButton *button)
 {
     if (gtk_toggle_button_get_active(button))
     {
-        const char *diffname;
-        diffname = gtk_button_get_label(GTK_BUTTON(button));
+        const char *diffname = gtk_button_get_label(GTK_BUTTON(button));
         if (!strcmp(diffname, "Peaceful"))
             difficult = 0;
         else if (!strcmp(diffname, "Easy"))
@@ -50,6 +49,7 @@ void startGame()
 
 void replayGame()
 {
+    gtk_widget_hide(gameWindow);
     gtk_widget_hide(msgWindow);
     gtk_widget_show(difficultWindow);
 }

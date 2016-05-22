@@ -2,7 +2,7 @@ sparrow
 gorilla
 vulture
 giraffe
-partridge
+workbox
 teacher
 student
 college
@@ -10,11 +10,11 @@ academy
 faculty
 brother
 parents
-grandson
+subject
 husband
 widower
 stomach
-skeleton
+boombox
 muscles
 bladder	
 anatomy
@@ -22,7 +22,7 @@ heather
 jasmine
 begonia
 cypress
-garden
+juryman
 syadium
 session
 referee
