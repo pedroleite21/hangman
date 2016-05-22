@@ -39,6 +39,7 @@ int getSymbol(GtkButton *button)
             gtk_label_set_text(gameMsg, "You saved the cat!");
             gtk_label_set_text(winAmount, msgSaved);
             gtk_label_set_text(loseAmount, msgKilled);
+            gtk_image_set_from_file(hangmanImage, "../res/pics/win.png");
             gtk_widget_show(msgWindow);
         }
     }
