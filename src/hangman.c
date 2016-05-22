@@ -6,13 +6,15 @@
 
 int getSymbol(GtkButton *button)
 {
+    char errPath[20], wordMsg[20], msgKilled[20], msgSaved[20];
     int width, height;
+    gtk_window_get_size(GTK_WINDOW(msgWindow), &width, &height);
     const char *symbol = gtk_button_get_label(button);
     gtk_widget_hide(GTK_WIDGET(button));
 
     int symExists = 0;
 
-    for (i = 0; i < wordSize; i++)
+    for (int i = 0; i < wordSize; i++)
     {
         if (wordOfTheGame[i] == *symbol)
         {
@@ -23,13 +25,12 @@ int getSymbol(GtkButton *button)
 
     if (symExists)
     {
-        for (i = 0; i < wordSize; i++)
+        for (int i = 0; i < wordSize; i++)
             if (wordOfTheGame[i] == *symbol)
                 hiddenWord[i] = *symbol;
         gtk_label_set_text(hiddenWordLabel, hiddenWord);
         if (!strcmp(wordOfTheGame, hiddenWord))
         {
-            gtk_window_get_size(GTK_WINDOW(msgWindow), &width, &height);
             gtk_window_move(GTK_WINDOW(msgWindow), gdk_screen_width() / 1.35, gdk_screen_height() / 2 - height / 2);
             gtk_widget_hide(GTK_WIDGET(alphabetGrid));
             gamesWin++;
@@ -50,6 +51,7 @@ int getSymbol(GtkButton *button)
 
     if (errAmount == 5)
     {
+        gtk_window_move(GTK_WINDOW(msgWindow), gdk_screen_width() / 1.35, gdk_screen_height() / 2 - height / 2);
         gtk_widget_hide(GTK_WIDGET(alphabetGrid));
         gamesLose++;
         sprintf(msgSaved, "Cats saved: %d", gamesWin);

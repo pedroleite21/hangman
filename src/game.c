@@ -26,6 +26,7 @@ void difficult_ch(GtkToggleButton *button)
 
 void startGame()
 {
+    int i;
     errAmount = 0;
     gtk_image_set_from_file(hangmanImage, "../res/pics/0.png");
     gtk_widget_hide(difficultWindow);
