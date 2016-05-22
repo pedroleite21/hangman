@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
+#include "game.h"
 
 char *WordSelect(int difficult)
 {
@@ -20,8 +22,6 @@ char *WordSelect(int difficult)
         case 3:
             wordsDB = fopen("../res/words/hard.txt", "r");
             break;
-        default:
-            break;
     }
     if (wordsDB == NULL)
     {
@@ -30,38 +30,35 @@ char *WordSelect(int difficult)
     }
 
     int wordsAmount = 0, wordLength = 0;
-    char ch;
+    char str[10];
 
-    while (ch != EOF)
+    while (!feof(wordsDB))
     {
-        ch = fgetc(wordsDB);
-        if (ch != '\n')
-            wordLength++;
-        if (ch == '\n')
-            wordsAmount++;
+        fgets(str, 10, wordsDB);
+        wordsAmount++;
     }
-    fseek(wordsDB, 0, SEEK_SET);
-    wordLength /= wordsAmount;
-
+    
     srand(time(NULL));
     int newWordNum = rand() % wordsAmount;
 
-    char *newWord;
-    newWord = (char*)malloc(wordLength*sizeof(char));
+    fseek(wordsDB, 0, SEEK_SET);
 
     int i = 0;
     while (i != newWordNum)
     {
-        ch = fgetc(wordsDB);
-        if (ch == '\n')
-            i++;
+        fgets(str, 10, wordsDB);
+        i++;
     }
+    
+    wordLength = strlen(str) - 1;
+    char *newWord;
+    newWord = (char*)malloc(wordLength*sizeof(char));
 
     for (i = 0; i < wordLength; i++)
-        newWord[i] = fgetc(wordsDB);
+        newWord[i] = str[i];
     newWord[i] = '\0';
 
     fclose(wordsDB);
-
+    
     return newWord;
 }

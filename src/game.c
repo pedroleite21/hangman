@@ -8,7 +8,7 @@
 
 int difficult = 0;
 
-void difficult_ch(GtkToggleButton *button)
+void difficultSet(GtkToggleButton *button)
 {
     if (gtk_toggle_button_get_active(button))
     {
