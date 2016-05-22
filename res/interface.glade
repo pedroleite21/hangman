@@ -2,11 +2,12 @@
 <!-- Generated with glade 3.20.0 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
+  <!-- interface-local-resource-path res -->
   <object class="GtkWindow" id="difficultWindow">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Hangman</property>
     <property name="resizable">False</property>
-    <property name="window_position">center</property>
+    <property name="window_position">center-always</property>
     <signal name="destroy" handler="gtk_main_quit" swapped="no"/>
     <child>
       <object class="GtkGrid">
@@ -175,7 +176,7 @@
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Hangman</property>
     <property name="resizable">False</property>
-    <property name="window_position">center</property>
+    <property name="window_position">center-always</property>
     <property name="default_width">600</property>
     <property name="default_height">300</property>
     <child>
@@ -183,10 +184,12 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
+        <signal name="destroy" handler="gtk_main_quit" swapped="no"/>
         <child>
           <object class="GtkImage" id="hangmanImage">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="pixbuf">pics/0.png</property>
             <property name="icon_size">6</property>
           </object>
           <packing>
@@ -216,12 +219,14 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">center</property>
+            <property name="valign">center</property>
             <child>
               <object class="GtkButton" id="buttonW">
                 <property name="label" translatable="yes">w</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -234,6 +239,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">2</property>
@@ -246,6 +252,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">3</property>
@@ -258,6 +265,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">4</property>
@@ -270,6 +278,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">5</property>
@@ -282,6 +291,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">6</property>
@@ -294,6 +304,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">7</property>
@@ -306,6 +317,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">8</property>
@@ -318,6 +330,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">9</property>
@@ -330,6 +343,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">0</property>
@@ -342,6 +356,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -354,6 +369,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">2</property>
@@ -366,6 +382,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">3</property>
@@ -378,6 +395,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">4</property>
@@ -390,6 +408,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">5</property>
@@ -402,6 +421,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">6</property>
@@ -414,6 +434,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">7</property>
@@ -426,6 +447,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">8</property>
@@ -438,6 +460,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">0</property>
@@ -450,6 +473,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">7</property>
@@ -462,6 +486,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">6</property>
@@ -474,6 +499,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">5</property>
@@ -486,6 +512,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">4</property>
@@ -498,6 +525,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">3</property>
@@ -510,6 +538,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">2</property>
@@ -522,6 +551,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="getSymbol" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -556,6 +586,7 @@
     <property name="resizable">False</property>
     <property name="default_width">340</property>
     <property name="default_height">250</property>
+    <signal name="destroy" handler="gtk_main_quit" swapped="no"/>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -587,7 +618,8 @@
               <object class="GtkLabel" id="winAmount">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Cats Savior: </property>
+                <property name="margin_right">25</property>
+                <property name="label" translatable="yes">Cats saved: </property>
               </object>
               <packing>
                 <property name="left_attach">0</property>
@@ -598,7 +630,8 @@
               <object class="GtkLabel" id="loseAmount">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Cats Killer: </property>
+                <property name="margin_left">25</property>
+                <property name="label" translatable="yes">Cats killed: </property>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -624,6 +657,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <signal name="clicked" handler="replayGame" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">0</property>

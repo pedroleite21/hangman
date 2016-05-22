@@ -2,6 +2,6 @@
 #define HANGMAN_H
 
 int symUsed(char sym, char *str);
-int Hangman(char *word);
+int getSymbol(GtkButton *button);
 
 #endif

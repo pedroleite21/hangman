@@ -1,51 +1,44 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <conio.h>
 #include <gtk/gtk.h>
-#include "word_select.h"
-#include "hangman.h"
+#include "interface.h"
 
 int main(int argc, char *argv[])
 {
-    int gamesWin = 0, gamesLose = 0;
-    char prompt = 'y';
-    while (prompt != 'n')
+    GError *error = NULL;
+
+    gtk_init(&argc, &argv);
+    builder = gtk_builder_new();
+    if (!gtk_builder_add_from_file(builder, UI_FILE, &error))
     {
-        int gameRes, difficult = -1;
-        char *wordOfTheGame;
-        while (difficult < 0 || difficult > 4)
-        {
-            printf("1 - Peaceful\n");
-            printf("2 - Easy\n");
-            printf("3 - Medium\n");
-            printf("4 - Hard\n");
-            printf("0 - Exit from the game\n");
-            printf("\nSelect menu number: ");
-            difficult = getche() - '0';
-            if (difficult == 0)
-                return 0;
-            if (difficult < 0 || difficult > 4)
-            {
-                printf("\nYou should enter [0..3] symbols only.");
-                getch();
-            }
-        }
-        system("clear");
-        if (!(wordOfTheGame = WordSelect(difficult)))
-            return 0;
-        printf("Word of the game: %s.\n", wordOfTheGame);
-        gameRes = Hangman(wordOfTheGame);
-        if (gameRes)
-            gamesWin++;
-        else
-            gamesLose++;
-        printf("Win: %d\tLose: %d\n", gamesWin, gamesLose);
-        printf("Another try? [y/n] ");
-        prompt = getche();
-        if (prompt == 'y')
-            system("clear");
+        g_warning("%s", error->message);
+        g_free(error);
+        return 1;
     }
-    printf("\n");
+
+    difficultWindow = GTK_WIDGET(gtk_builder_get_object(builder, "difficultWindow"));
+    gameWindow = GTK_WIDGET(gtk_builder_get_object(builder, "gameWindow"));
+    msgWindow = GTK_WIDGET(gtk_builder_get_object(builder, "msgWindow"));
+
+    difficult0 = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "difficult0"));
+    difficult1 = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "difficult1"));
+    difficult2 = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "difficult2"));
+    difficult3 = GTK_RADIO_BUTTON(gtk_builder_get_object(builder, "difficult3"));
+
+    startButton = GTK_BUTTON(gtk_builder_get_object(builder, "startButton"));
+    exitButton = GTK_BUTTON(gtk_builder_get_object(builder, "exitButton"));
+
+    hiddenWordLabel = GTK_LABEL(gtk_builder_get_object(builder, "hiddenWordLabel"));
+    gameMsg = GTK_LABEL(gtk_builder_get_object(builder, "gameMsg"));
+    winAmount = GTK_LABEL(gtk_builder_get_object(builder, "winAmount"));
+    loseAmount = GTK_LABEL(gtk_builder_get_object(builder, "loseAmount"));
+
+    alphabetGrid = GTK_GRID(gtk_builder_get_object(builder, "alphabetGrid"));
     
+    hangmanImage = GTK_IMAGE(gtk_builder_get_object(builder, "hangmanImage"));
+
+    gtk_builder_connect_signals(builder, NULL);
+    g_object_unref(G_OBJECT(builder));
+    gtk_widget_show(difficultWindow);
+    gtk_main();
+
     return 0;
 }

@@ -1,100 +1,68 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <conio.h>
 #include <string.h>
+#include "game.h"
+#include "interface.h"
 
-#define alphabetSize 26
-
-int symUsed(char sym, char *str)
+int getSymbol(GtkButton *button)
 {
-    for (int i = 0; i < strlen(str); i++)
-        if (str[i] == sym)
-            return 1;
+    char errPath[20], wordMsg[20], msgKilled[20], msgSaved[20];
+    int width, height;
+    gtk_window_get_size(GTK_WINDOW(msgWindow), &width, &height);
+    const char *symbol = gtk_button_get_label(button);
+    gtk_widget_hide(GTK_WIDGET(button));
+
+    int symExists = 0;
+
+    for (int i = 0; i < wordSize; i++)
+    {
+        if (wordOfTheGame[i] == *symbol)
+        {
+            symExists = 1;
+            break;
+        }
+    }
+
+    if (symExists)
+    {
+        for (int i = 0; i < wordSize; i++)
+            if (wordOfTheGame[i] == *symbol)
+                hiddenWord[i] = *symbol;
+        gtk_label_set_text(hiddenWordLabel, hiddenWord);
+        if (!strcmp(wordOfTheGame, hiddenWord))
+        {
+            gtk_window_move(GTK_WINDOW(msgWindow), gdk_screen_width() / 1.35, gdk_screen_height() / 2 - height / 2);
+            gtk_widget_hide(GTK_WIDGET(alphabetGrid));
+            gamesWin++;
+            sprintf(msgSaved, "Cats saved: %d", gamesWin);
+            sprintf(msgKilled, "Cats killed: %d", gamesLose);
+            gtk_label_set_text(gameMsg, "You saved the cat!");
+            gtk_label_set_text(winAmount, msgSaved);
+            gtk_label_set_text(loseAmount, msgKilled);
+            gtk_widget_show(msgWindow);
+        }
+    }
+    else if (!symExists)
+    {
+        errAmount++;
+        sprintf(errPath, "../res/pics/%d.png", errAmount);
+        gtk_image_set_from_file(hangmanImage, errPath);
+    }
+
+    if (errAmount == 5)
+    {
+        gtk_window_move(GTK_WINDOW(msgWindow), gdk_screen_width() / 1.35, gdk_screen_height() / 2 - height / 2);
+        gtk_widget_hide(GTK_WIDGET(alphabetGrid));
+        gamesLose++;
+        sprintf(msgSaved, "Cats saved: %d", gamesWin);
+        sprintf(msgKilled, "Cats killed: %d", gamesLose);
+        sprintf(wordMsg, "Hidden word is - %s", wordOfTheGame);
+        gtk_label_set_text(gameMsg, "You killed the cat!");
+        gtk_label_set_text(winAmount, msgSaved);
+        gtk_label_set_text(loseAmount, msgKilled);
+        gtk_label_set_text(hiddenWordLabel, wordMsg);
+        gtk_widget_show(msgWindow);
+    }
+
     return 0;
-}
-
-int Hangman(char *word)
-{
-    int i, count = 0, wordSize, errAmount = 0;
-    char symbol, usedSymbols[alphabetSize];
-    for (int k = 0; k < alphabetSize; k++)
-        usedSymbols[k] = '-';
-
-    for (wordSize = 0; word[wordSize] != '\0'; wordSize++);
-    printf("Word size is: %d.\n", wordSize);
-    
-    char *hiddenWord;
-    hiddenWord = (char*)malloc(wordSize*sizeof(char));
-    for (i = 0; i < wordSize; i++)
-        hiddenWord[i] = '-';
-    hiddenWord[i] = '\0';
-    
-    printf("Press any key to start...\n");
-    getch();
-    system("clear");
-
-    while (errAmount != 5)
-    {
-        int symExists = 0;
-
-        printf("Used symbols:\n");
-        for (int k = 0; k < alphabetSize; k++)
-            printf("%c", usedSymbols[k]);
-        printf("\n\n");
-        printf("Errors: %d\n\n", errAmount);
-        for (i = 0; i < wordSize; i++)
-            printf("%c", hiddenWord[i]);
-        printf("\n\nEnter symbol: ");
-        symbol = getche();
-        if (symbol < 'a' || symbol > 'z')
-        {
-            printf("\nYou should enter [a..z] symbols only.");
-            getch();
-            system("clear");
-            continue;
-        }
-
-        for (i = 0; i < wordSize; i++)
-        {
-            if (word[i] == symbol)
-            {
-                symExists = 1;
-                break;
-            }
-        }
-
-        if (symExists)
-        {
-            for (i = 0; i < wordSize; i++)
-                if (word[i] == symbol)
-                    hiddenWord[i] = symbol;
-            if (!strcmp(word, hiddenWord))
-            {
-                system("clear");
-                break;
-            }
-        }
-        else if (!symExists && !symUsed(symbol, usedSymbols))
-            errAmount++;
-
-        if (!symUsed(symbol, usedSymbols))
-        {
-            usedSymbols[count] = symbol;
-            count++;
-        }
-
-        system("clear");
-    }
-
-    if (errAmount != 5)
-    {
-        printf("You win!\n");
-        return 1;
-    }
-    else
-    {
-        printf("You lose!\n");
-        return 0;
-    }
-    return -1;
 }
