@@ -19,7 +19,7 @@ obj/game.o: src/game.c
 	$(CC) -c src/game.c -o obj/game.o $(LIBS)
 
 obj/word_select.o: src/word_select.c
-	$(CC) -c src/word_select.c -o obj/word_select.o
+	$(CC) -c src/word_select.c -o obj/word_select.o $(LIBS)
 
 app: bin/hangman
 	bin/hangman

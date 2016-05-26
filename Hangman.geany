@@ -28,12 +28,12 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=4
+current_page=0
 FILE_NAME_0=1670;C;0;EUTF-8;0;1;0;%2Fhome%2Fdx37%2FTRPO%2Fhangman%2Fsrc%2Fmain.c;0;4
 FILE_NAME_1=391;C;0;EUTF-8;0;1;0;%2Fhome%2Fdx37%2FTRPO%2Fhangman%2Fsrc%2Finterface.h;0;4
-FILE_NAME_2=167;C;0;EUTF-8;0;1;0;%2Fhome%2Fdx37%2FTRPO%2Fhangman%2Fsrc%2Fgame.c;0;4
+FILE_NAME_2=891;C;0;EUTF-8;0;1;0;%2Fhome%2Fdx37%2FTRPO%2Fhangman%2Fsrc%2Fgame.c;0;4
 FILE_NAME_3=119;C;0;EUTF-8;0;1;0;%2Fhome%2Fdx37%2FTRPO%2Fhangman%2Fsrc%2Fgame.h;0;4
-FILE_NAME_4=1391;C;0;EUTF-8;0;1;0;%2Fhome%2Fdx37%2FTRPO%2Fhangman%2Fsrc%2Fhangman.c;0;4
+FILE_NAME_4=2020;C;0;EUTF-8;0;1;0;%2Fhome%2Fdx37%2FTRPO%2Fhangman%2Fsrc%2Fhangman.c;0;4
 FILE_NAME_5=36;C;0;EUTF-8;0;1;0;%2Fhome%2Fdx37%2FTRPO%2Fhangman%2Fsrc%2Fhangman.h;0;4
 FILE_NAME_6=1080;C;0;EUTF-8;0;1;0;%2Fhome%2Fdx37%2FTRPO%2Fhangman%2Fsrc%2Fword_select.c;0;4
 FILE_NAME_7=49;C;0;EUTF-8;0;1;0;%2Fhome%2Fdx37%2FTRPO%2Fhangman%2Fsrc%2Fword_select.h;0;4

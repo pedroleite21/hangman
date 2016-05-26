@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <gtk/gtk.h>
 #include <string.h>
 #include <time.h>
 #include "game.h"
@@ -7,25 +8,32 @@
 char *WordSelect(int difficult)
 {
     FILE *wordsDB = NULL;
+    char wordPath[260], difficultName[10];
 
     switch (difficult)
     {
         case 0:
-            wordsDB = fopen("../res/words/peaceful.txt", "r");
+            sprintf(difficultName, "peaceful");
             break;
         case 1:
-            wordsDB = fopen("../res/words/easy.txt", "r");
+            sprintf(difficultName, "easy");
             break;
         case 2:
-            wordsDB = fopen("../res/words/medium.txt", "r");
+            sprintf(difficultName, "medium");
             break;
         case 3:
-            wordsDB = fopen("../res/words/hard.txt", "r");
+            sprintf(difficultName, "hard");
             break;
     }
+    sprintf(wordPath, "../res/words/%s.txt", difficultName);
+    wordsDB = fopen(wordPath, "r");
     if (wordsDB == NULL)
     {
-        printf("Words database not found.\n");
+        printf("Words database \"%s\" not found.\n", wordPath);
+        GtkWidget *errWordsMsg = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, "Error");
+        gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(errWordsMsg), "Words database \"%s\" not found.\n", wordPath);
+        gtk_dialog_run(GTK_DIALOG(errWordsMsg));
+        gtk_main_quit();
         return NULL;
     }
 
