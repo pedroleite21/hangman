@@ -1,23 +1,25 @@
 OBJECTS = obj/main.o obj/hangman.o obj/game.o obj/word_select.o
+CC = gcc -std=c99 -Wall
+LIBS = `pkg-config --cflags --libs gtk+-3.0` -rdynamic
 
 .PHONY: clean prepare
 
 #############
 
 bin/hangman: prepare ${OBJECTS}
-	gcc -std=c99 -Wall -O0 -g3 -o bin/hangman ${OBJECTS} `pkg-config --cflags --libs gtk+-3.0` -rdynamic
+	$(CC) -o bin/hangman ${OBJECTS} $(LIBS)
 
 obj/main.o: src/main.c
-	gcc -std=c99 -Wall -O0 -g3 -c src/main.c -o obj/main.o `pkg-config --cflags --libs gtk+-3.0` -rdynamic
+	$(CC) -c src/main.c -o obj/main.o $(LIBS)
 
 obj/hangman.o: src/hangman.c
-	gcc -std=c99 -Wall -O0 -g3 -c src/hangman.c -o obj/hangman.o `pkg-config --cflags --libs gtk+-3.0` -rdynamic
+	$(CC) -c src/hangman.c -o obj/hangman.o $(LIBS)
 
 obj/game.o: src/game.c
-	gcc -std=c99 -Wall -O0 -g3 -c src/game.c -o obj/game.o `pkg-config --cflags --libs gtk+-3.0` -rdynamic
+	$(CC) -c src/game.c -o obj/game.o $(LIBS)
 
 obj/word_select.o: src/word_select.c
-	gcc -std=c99 -Wall -O0 -g3 -c src/word_select.c -o obj/word_select.o
+	$(CC) -c src/word_select.c -o obj/word_select.o
 
 app: bin/hangman
 	bin/hangman
